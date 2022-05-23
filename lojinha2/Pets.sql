@@ -9,12 +9,28 @@ create database lojinhapets;
 use lojinhapets;
 create table produtos(
 	codigo int primary key auto_increment,
+    barcode varchar(255),
     produto varchar(255) not null,
-    quantidade int not null,
-    valor decimal(10,2)
+    descricao varchar(255) not null,
+    fabricante varchar(255) not null,
+    datacard timestamp default current_timestamp,
+    dataval date not null,
+    estoque int not null,
+    estoquemin int not null,
+    unidade varchar(255) not null,
+    localizacao varchar(255),
+   custo decimal(10,2),
+   lucro decimal(10,2),
+   venda decimal(10,2),
+   valor decimal(10,2)
     );
     describe produtos;
     
+    
+  insert into produtos(barcode,produto,descricao,fabricante,dataval,
+  estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+  value('1234567890','Caneta BIC Azul','Caneta bic ponta fina','Bic','20240523',20,5,'UN','Prateleira 2',0.80,100,1.50);
+  
   insert into produtos (produto,quantidade,valor)
   value ('ração',10,8.20);
     insert into produtos (produto,quantidade,valor)
@@ -30,8 +46,31 @@ create table produtos(
   insert into produtos (produto,quantidade,valor)
   value('caminha',2,20);
   
+  drop table produtos;
+  
     select * from produtos;
     
+create table usuarios(
+	idusu int primary key auto_increment,
+    usuario varchar(255) not null,
+    login varchar(255) not null unique,
+    senha varchar(255) not null,
+    perfil varchar(255)  not null
+    );
+    
+    describe usuarios;
+
+insert into usuarios(usuario,login,senha,perfil)
+value('Administrador','admin',md5('admin'),'admin');
+    
+insert into usuarios(usuario,login,senha,perfil)
+value('Gabriela','gabriela',md5('123456'),'user');
+
+ select * from usuarios;
+ 
+  select * from usuarios where login='admin' and senha=md5('admin');
+
+
     select * from produto where codigo=2;
     
     select produto,quantidade from produtos;
