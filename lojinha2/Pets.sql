@@ -27,6 +27,8 @@ create table produtos(
   value ('escova/pente',10,8.20);
     insert into produtos (produto,quantidade,valor)
   value ('comedouro',10,6.20);
+  insert into produtos (produto,quantidade,valor)
+  value('caminha',2,20);
   
     select * from produtos;
     
